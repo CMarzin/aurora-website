@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // components
-import Home from './components/Home';
 import Game from './components/Game';
 import Nav from './components/Nav';
 import Movie from './components/Movie';
@@ -21,21 +21,22 @@ export default class App extends Component {
   render() {
     return (
       <Router>
-        <div className='container'>
+        <div className='h-100'>
           <Nav />
-
-          <Switch>
-            <Route exact path='/' component={Movie}/>
-            <Route exact path='/film' component={Movie}/>
-            <Route exact path='/jeux' component={Game} />
-            <Route exact path='/trailer' component={Trailer} />
-            <Route exact path='/synopsis' component={Synopsis} />
-            <Route exact path='/making-of' component={MakingOf}/>
-            <Route exact path='/gallery' component={Gallery}/>
-            <Route render={function () {
-              return <p>Not Found</p>
-            }} />
-          </Switch>
+          <div className='h-100 container'>
+            <Switch>
+              <Route exact path='/' component={Movie}/>
+              <Route exact path='/film' component={Movie}/>
+              <Route exact path='/jeux' component={Game} />
+              <Route exact path='/trailer' component={Trailer} />
+              <Route exact path='/synopsis' component={Synopsis} />
+              <Route exact path='/making-of' component={MakingOf}/>
+              <Route exact path='/gallery' component={Gallery}/>
+              <Route render={function () {
+                return <p>Not Found</p>
+              }} />
+            </Switch>
+          </div>
         </div>
       </Router>
     )
