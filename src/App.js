@@ -27,11 +27,13 @@ export default class App extends Component {
             <Switch>
               <Route exact path='/' component={Movie}/>
               <Route exact path='/film' component={Movie}/>
-              <Route exact path='/jeux' component={Game} />
               <Route exact path='/trailer' component={Trailer} />
               <Route exact path='/synopsis' component={Synopsis} />
               <Route exact path='/making-of' component={MakingOf}/>
               <Route exact path='/gallery' component={Gallery}/>
+              <Route exact path='/jeux' render={ props => (
+                <Game {...props} timeout={3000} />
+                )} />
               <Route render={function () {
                 return <p>Not Found</p>
               }} />
