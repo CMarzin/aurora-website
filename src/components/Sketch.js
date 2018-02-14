@@ -1,47 +1,49 @@
-const sketch = p => {
-  const bubObjs = [];
+/* eslint no-undef: 1 */
+import Bubble from './Bubble'
 
-  p.setup = () => {
-    p.createCanvas(window.innerWidth / 2, window.innerHeight / 2, p.WEBGL);
-    for (let i = 0; i < 2; i++) {
-      bubObjs[i] = new Bubble();
-    }
-    p.background(200);
-  };
+let bubObjs = [];
+window.bubbles = {
+  count: 4
+}
 
-  p.draw = () => {
-    p.background(220);
-    for (let i = 0; i < bubObjs.length; i++) {
-      bubObjs[i].display();
-      bubObjs[i].move();
-    }
-  };
+export const setup = (force) => {
+  if (!force) return document.querySelector('#defaultCanvas0').remove()
 
-  p.windowResized = () => {
-    p.resizeCanvas(window.innerWidth / 2, window.innerHeight / 2);
-  }
+  const size = getContainerSize();
+  const container = document.querySelector('.app__container');
 
-  class Bubble {
-    constructor() {
-      this.x = p.random(0,100);
-      this.y = p.height / 2 - p.random(20, 60);
-    }
+  createCanvas(size.width, size.height / 2, WEBGL);
+  container.appendChild(canvas)
 
-    display() {
-      p.stroke(0);
-      p.fill(150);
-      p.ellipse(this.x, this.y, 20, 20);
-    }
+  setBubbles()
+}
 
-    move() {
-      if (this.y <= -300) {
-        this.y = p.height / 2 - p.random(20, 60);
-      }
-
-      this.x += p.random(-5,5);
-      this.y -= p.random(5, 10);
-    }
+export const setBubbles = (value = 4) => {
+  bubObjs = []
+  for (let i = 0; i < value; i++) {
+    bubObjs[i] = new Bubble();
   }
 }
 
-export default sketch
+export const draw = () => {
+  background(255);
+  for (let i = 0; i < bubObjs.length; i++) {
+    bubObjs[i].display();
+    bubObjs[i].move();
+  }
+}
+
+export const windowResized = () => {
+  const size = getContainerSize();
+  resizeCanvas(size.width, size.height / 2);
+}
+
+export const getContainerSize = () => {
+  const container = document.querySelector('.app__container');
+  const noPx = (str) => parseInt(str.replace('px', ''))
+
+  return {
+    width: noPx(getComputedStyle(container).width),
+    height: noPx(getComputedStyle(container).height)
+  }
+}
