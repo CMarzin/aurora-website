@@ -1,6 +1,4 @@
 import React from 'react';
-// import 'bootstrap/js/dist/util';
-// import 'bootstrap/js/dist/dropdown';
 
 var NavLink = require('react-router-dom').NavLink;
 const routes = [
@@ -14,12 +12,12 @@ const routes = [
 
 export default () =>
     <nav className="nav navbar navbar-expand-lg navbar-light bg-light">
-      <a className="navbar-brand" href="#">Navbar</a>
-      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+      <NavLink className="navbar-brand" to="/">LOGO</NavLink>
+      <button className="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style={{}}>
         <span className="navbar-toggler-icon"></span>
       </button>
 
-      <div className="collapse navbar-collapse ">
+      <div className="collapse navbar-collapse" id="navbarColor01">
       <ul className="navbar-nav ml-auto">
           {routes.map((r, i) =>
             <li className="nav-item" key={`nav-child-${i}`}>

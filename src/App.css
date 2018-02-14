@@ -151,3 +151,7 @@ p {
 .synopsis_people li {
   width: 50%;
 }
+
+canvas {
+  border: 1px solid red;
+}
