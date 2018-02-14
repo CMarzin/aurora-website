@@ -23,7 +23,7 @@ export default () =>
       <ul className="navbar-nav ml-auto">
           {routes.map((r, i) =>
             <li className="nav-item" key={`nav-child-${i}`}>
-              <NavLink exact className="nav-link" activeClassName='active' to={`/${r}`}>{r}</NavLink>
+              <NavLink exact className="nav-link" activeClassName='active-nav' to={`/${r}`}>{r}</NavLink>
             </li>
           )}
         </ul>

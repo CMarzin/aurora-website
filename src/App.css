@@ -1,30 +1,33 @@
-.App {
-  text-align: center;
+.active-nav {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: 0.5s ease;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.active-nav:before {
+  content: '';
+  transition: 0.5s ease;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 50%;
+  height: 2px;
+  background: #4AC7E2;
+  border-radius: 2px;
+  animation: opacity 0.5s ease;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+@keyframes opacity {
+  from {
+    opacity: 0;
+    width: 0;
+  }
+  to {
+    width: 50%;
+    opacity: 1;
+  }
 }
 
 
@@ -58,4 +61,93 @@
     max-height: 60vh;
     width: 100%;
     height: 100%;
+}
+
+/*******************************
+* Basics
+********************************/
+
+/* h2 {
+  font-size: 24px;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+p {
+  font-size: 16px;
+} */
+
+/*******************************
+* Synopsis
+********************************/
+
+.synopsis_container h2 {
+  margin-bottom: 3rem;
+  margin-top: 3rem;
+}
+
+.synopsis_container h2 {
+  position: relative;
+  width: fit-content;
+}
+
+.synopsis_container h2::before {
+  content: '';
+  position: absolute;
+
+  width: 75%;
+  height: 2px;
+
+  bottom: -.5rem;
+
+  border-radius: 2px;
+  background: #4AC7E2;
+}
+
+.synopsis_container ul {
+  list-style: none;
+}
+
+.Synopsis_image {
+  position: relative;
+  width: 100%;
+  height: 25%;
+  background: blue;
+}
+
+.trolo {
+  width: calc(100% / 3);
+}
+
+.synopsis_character ul {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-around;
+  
+  list-style: none;
+  padding: 0;  
+}
+
+.synopsis_squad {
+  margin-bottom: 3rem;
+  margin-top: 3rem;
+
+  width: 100%;
+  height: 100%;
+}
+
+.synopsis_people {
+  display: flex;
+  flex-wrap: wrap;
+
+  text-align: center;
+  padding: 0;  
+  list-style: none;
+}
+
+.synopsis_people li {
+  width: 50%;
 }
