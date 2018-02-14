@@ -1,7 +1,18 @@
 import React, {Component} from 'react';
 import Shake from 'shake.js'
+// import p5 from 'p5';
 
+import sketch from './Sketch';
+import Results from './Results'
 import bubbleSound from '../sounds/bulles.mp3'
+
+// setup
+window.setup = () => {
+  // document.querySelector('.app__container').appendChild(window.p5.canvas)
+  // window.p5.background(0);
+}
+
+
 
 export default class Game extends Component {
   constructor(props) {
@@ -12,7 +23,8 @@ export default class Game extends Component {
       resistance: 0,
       score: 0,
       shakeCount: 0,
-      gameIsOn: false
+      gameIsOn: false,
+      gameIsOver: false,
     }
     this.props = props
 
@@ -48,6 +60,13 @@ export default class Game extends Component {
     this.shake.stop()
     window.removeEventListener('shake', this.onShake, false);
     window.removeEventListener('keydown', this.onShake, false);
+
+    // window.p5.remove();
+
+    this.setState({
+      gameIsOn: false,
+      gameIsOver: true,
+    })
   }
 
   shakeEvent(e) {
@@ -62,17 +81,29 @@ export default class Game extends Component {
   }
 
 
-  // shouldComponentUpdate() {
-  //   return false
-  // }
+  shouldComponentUpdate(nextProps, nextState) {
+    // return this.state.gameIsOn !== nextState.gameIsOn
+    return true
+  }
+
+  componentDidMount() {
+    // window.p5 = new p5()
+    // console.log(document.querySelector('#defaultCanvas0'))
+    // document.querySelector('#defaultCanvas0').remove()
+  }
 
   render() {
-    return this.state.gameIsOn ?
-    (
-      <pre>
-        {JSON.stringify(this.state, null, 2)}
-      </pre>
-    )
-    : (<button className="btn btn-success" onClick={this.play.bind(this)}>Go</button>)
+    return (
+    <div>
+      {this.state.gameIsOver && <Results score={this.state.score} />}
+      {this.state.gameIsOn ?
+        <div>
+          <pre>{JSON.stringify(this.state, null, 2)}</pre>
+        </div>
+      : <div className="text-center">
+          <button className="btn btn-success" onClick={this.play.bind(this)}>Jouer</button>
+        </div>
+      }
+    </div>)
   }
 }

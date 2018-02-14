@@ -1,6 +1,4 @@
 import React from 'react';
-// import 'bootstrap/js/dist/util';
-// import 'bootstrap/js/dist/dropdown';
 
 var NavLink = require('react-router-dom').NavLink;
 const routes = [
@@ -14,7 +12,7 @@ const routes = [
 
 export default () =>
     <nav className="nav navbar navbar-expand-lg navbar-light bg-light">
-      <a className="navbar-brand" href="#">Navbar</a>
+      <NavLink className="navbar-brand" to="/">LOGO</NavLink>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>

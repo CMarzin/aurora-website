@@ -23,7 +23,7 @@ export default class App extends Component {
       <Router>
         <div className='h-100'>
           <Nav />
-          <div className='h-100 container'>
+          <div className='h-100 container app__container'>
             <Switch>
               <Route exact path='/' component={Movie}/>
               <Route exact path='/film' component={Movie}/>
