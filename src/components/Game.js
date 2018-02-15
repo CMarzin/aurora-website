@@ -2,17 +2,18 @@ import React, {Component} from 'react';
 import Shake from 'shake.js'
 import p5 from 'p5';
 
-import { setup, draw, setBubbles, windowResized} from './Sketch';
+import { setup, draw, setBubbles, windowResized, clearBubbles} from './Sketch';
 import Results from './Results'
 import bubbleSound from '../sounds/bulles.mp3'
 
 let visual = new p5()
 
-
 // P5
 window.setup = setup
 window.draw = draw
 window.windowResized = windowResized
+
+const endDate = new Date("February 16, 2018 12:00:00");
 
 export default class Game extends Component {
   constructor(props) {
@@ -52,7 +53,7 @@ export default class Game extends Component {
     window.addEventListener('shake', this.onShake, false);
     window.addEventListener('keyup', this.onShake, false);
 
-    const timerInterval = 10
+    const timerInterval = 25
     this.timer = setInterval(() => {
       this.setState({
         timeLeft: this.props.timeout - this.state.timePassed,
@@ -65,7 +66,6 @@ export default class Game extends Component {
         score: Math.max(0, Math.round(this.state.score - (this.state.resistance / 8)))
       }, setBubbles(-this.state.resistance / 4))
     }, 1000)
-
 
     window.setup(true)
     visual.loop()
@@ -81,7 +81,7 @@ export default class Game extends Component {
     })
 
 
-    const timeout = setTimeout(() => {
+    this.timeout = setTimeout(() => {
       this.stop()
     }, this.props.timeout);
   }
@@ -90,12 +90,12 @@ export default class Game extends Component {
     this.shake.stop()
     window.removeEventListener('shake', this.onShake, false);
     window.removeEventListener('keyup', this.onShake, false);
-
+    clearTimeout(this.timeout)
     clearInterval(this.timer)
     clearInterval(this.resistance)
     visual.noLoop();
-    visual.noCanvas()
-    setBubbles()
+    document.querySelector('canvas') && visual.noCanvas()
+    clearBubbles()
 
     this.setState({
       gameIsOn: false,
@@ -122,18 +122,19 @@ export default class Game extends Component {
   }
 
   componentWillUnmount() {
-    this.setState({
-      resistance: 0,
-      score: 0,
-      shakeCount: 0,
-      gameIsOn: false,
-      timeLeft: this.props.timeout,
-      timePassed: 0,
-      gameIsOver: false,
-    })
+    this.stop()
   }
 
   render() {
+    if(Date.now() > endDate.getTime())
+      return (
+        <div>
+          <h2 className="text-center mb-3 mt-3">Le jeu est maintenant terminé !</h2>
+          <Results
+            player={" "}
+          />
+        </div>
+      )
     return (
     <div className={`text-center mb-5 ${(!this.state.gameIsOn && !this.state.gameIsOver) && 'h-75 d-flex justify-content-center align-items-center'}`}>
       {(this.state.gameIsOver && !this.state.gameIsOn) &&

@@ -3,7 +3,7 @@ import Bubble from './Bubble'
 
 let bubObjs = [];
 let timeOfLastUpdate;
-const timeIntervalBetweenUpdates = 400;
+const timeIntervalBetweenUpdates = 100;
 window.bubbles = {
   count: 4,
 }
@@ -19,6 +19,10 @@ export const setup = (force) => {
 
   setBubbles()
   timeOfLastUpdate = millis();
+}
+
+export const clearBubbles = () => {
+  bubObjs = []
 }
 
 export const setBubbles = (value = 4) => {

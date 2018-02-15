@@ -21,7 +21,7 @@ export default class App extends Component {
   render() {
     return (
       <Router>
-        <div className='h-100 d-flex flex-column' id="app__container">
+        <div className='h-100' id="app__container">
           <Nav />
           <Switch>
             <Route exact path='/' component={Movie}/>

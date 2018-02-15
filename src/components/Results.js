@@ -14,8 +14,8 @@ const fake = [{
 
 export default (props) =>
   <div className="results text-center mt-4">
-    <h2><strong>Vous avez libérés {props.score} bulles sacrées {props.player && `(${props.player})`}</strong></h2>
-    <p>Fin du jeu le 15/02/2018 à 18h</p>
+    { props.score && <h2><strong>Vous avez libérés {props.score} bulles sacrées {props.player && `(${props.player})`}</strong></h2>}
+    <p>Fin du jeu le 16/02/2018 à 12h</p>
 
     {props.player.length === 0 &&
     <form onSubmit={ e => {e.preventDefault();props.onSubmit(e)} } className="mb-5 mt-5">
