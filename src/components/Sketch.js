@@ -10,7 +10,7 @@ export const setup = (force) => {
   if (!force) return document.querySelector('#defaultCanvas0').remove()
 
   const size = getContainerSize();
-  const container = document.querySelector('.app__container');
+  const container = document.querySelector('#app__container');
 
   createCanvas(size.width, size.height / 2, WEBGL);
   container.appendChild(canvas)
@@ -39,7 +39,7 @@ export const windowResized = () => {
 }
 
 export const getContainerSize = () => {
-  const container = document.querySelector('.app__container');
+  const container = document.querySelector('#app__container');
   const noPx = (str) => parseInt(str.replace('px', ''))
 
   return {

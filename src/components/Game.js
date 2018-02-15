@@ -19,7 +19,7 @@ export default class Game extends Component {
     super()
 
     this.state = {
-      player: {},
+      player: "",
       resistance: 0,
       score: 0,
       shakeCount: 0,
@@ -60,14 +60,22 @@ export default class Game extends Component {
     this.timer = setInterval(() => {
       this.setState({
         timeLeft: this.props.timeout - this.state.timePassed,
-        timePassed: this.state.timePassed + timerInterval
+        timePassed: this.state.timePassed + timerInterval,
       })
     }, timerInterval)
 
 
-    if (!!visual.canvas.getAttribute('data-hidden'))
-      window.setup(true)
-    else visual.loop()
+    window.setup(true)
+    visual.loop()
+
+    this.setState({
+      score: 0,
+      resistance: 0,
+      score: 0,
+      shakeCount: 0,
+      timeLeft: this.props.timeout,
+      timePassed: 0,
+    })
 
 
     const timeout = setTimeout(() => {
@@ -82,16 +90,12 @@ export default class Game extends Component {
 
     clearInterval(this.timer)
     visual.noLoop();
+    visual.noCanvas()
     setBubbles()
 
     this.setState({
       gameIsOn: false,
       gameIsOver: true,
-      resistance: 0,
-      score: 0,
-      shakeCount: 0,
-      timeLeft: this.props.timeout,
-      timePassed: 0,
     })
   }
 
@@ -107,11 +111,21 @@ export default class Game extends Component {
     this.pop()
   }
 
+  setPlayer(event) {
+    const data = window.$(event.target).serializeArray()[0]
+    this.setState({ player: data.value })    
+  }
+
   render() {
     return (
-    <div>
-      { (this.state.gameIsOver && !this.state.gameIsOn) && <Results score={this.state.score} />}
-        <pre>{JSON.stringify(this.state, null, 2)}</pre>
+    <div className="text-center">
+      { (this.state.gameIsOver && !this.state.gameIsOn) &&
+        <Results
+          onSubmit={this.setPlayer.bind(this)}
+          score={this.state.score}
+          player={this.state.player}
+          />}
+        <pre>{false && JSON.stringify(this.state, null, 2)}</pre>
 
       {this.state.gameIsOn ?
         <div>
