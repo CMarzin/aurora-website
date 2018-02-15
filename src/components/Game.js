@@ -73,11 +73,11 @@ export default class Game extends Component {
     this.setState({
       score: 0,
       resistance: 0,
-      score: 0,
       shakeCount: 0,
       timeLeft: this.props.timeout,
       timePassed: 0,
       gameIsOn: true,
+      rank: [],
     })
 
 
@@ -116,9 +116,10 @@ export default class Game extends Component {
     this.pop()
   }
 
-  ajaxThis() {
+  ajaxThis(complete) {
     const $ = window.$;
-    $.ajax({
+
+    const request1 = $.ajax({
       type: "POST",
       url: 'https://get-letter-api.herokuapp.com/authenticate',
       data: {
@@ -126,7 +127,7 @@ export default class Game extends Component {
         "password": "heticp2019",
       },
       success: (auth) => {
-        request2(auth.auth_token)
+        complete ? request2(auth.auth_token) : request3(auth.auth_token)
       },
     });
 
@@ -154,10 +155,16 @@ export default class Game extends Component {
       contentType: "application/json",
       url: "https://get-letter-api.herokuapp.com/bubble_games",
       headers: {
-        "Authorization": token
+        "Authorization": token,
       },
       success: results => {
-        console.log(results)
+        const rank = results
+          .sort((a, b) => a.score - b.score)
+          .reverse()
+          .slice(1, 11)
+        this.setState({
+          rank
+        })
       }
     })
   }
@@ -166,7 +173,7 @@ export default class Game extends Component {
     const data = window.$(event.target).serializeArray()[0]
     this.setState({ player: data.value })
 
-    this.ajaxThis()
+    this.ajaxThis(true)
   }
 
   componentWillUnmount() {
@@ -190,6 +197,8 @@ export default class Game extends Component {
           onSubmit={this.setPlayer.bind(this)}
           score={this.state.score}
           player={this.state.player}
+          rank={this.state.rank}
+          ajax={this.ajaxThis.bind(this)}
           />}
         <pre>{false && JSON.stringify(this.state, null, 2)}</pre>
 
