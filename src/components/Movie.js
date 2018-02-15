@@ -1,5 +1,21 @@
 import Video from './Video'
 import React from 'react'
+import MovieData from '../data/movie'
 
-export default () => <Video id={null} text="Rendez-vous le vendredi 16 février 2018 pour la diffusion du court-métrage.
-En attendant n’oubliez pas de pétiller ! "/>
+const Movie = () => {
+  return (
+    <div className="movie_container">
+      <div className="text machin movie_text">
+        <div className="movie_message">
+          <h3>{ MovieData.title }</h3>
+        </div>
+        <div className="movie_description">
+          <p> { MovieData.description }</p>
+        </div>
+      </div>
+      <Video id={null}/>
+    </div>
+  )
+}
+
+export default Movie

@@ -156,6 +156,25 @@ p {
   width: 50%;
 }
 
+.synopsis_people h3 {
+  color: #4AC7E2;
+}
+
+.movie_text {
+  margin-top: 3rem;
+  text-align: center;
+  display: flex;
+  flex-flow: column;
+}
+
+.movie_description {
+  display: flex;
+  justify-content: center;
+}
+.movie_description p {
+  max-width: 60%;
+}
+
 canvas {
   border: 1px solid red;
 }
