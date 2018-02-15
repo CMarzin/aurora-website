@@ -43,12 +43,13 @@ export default class Game extends Component {
     audio.addEventListener('canplaythrough', audio.play, false);
     audio.src = bubbleSound;
 
-    try {navigator.vibrate(500)} catch (e) {}
+    try {navigator.vibrate(500 * this.state.resistance)} catch (e) {}
 
     return audio;
   }
 
   play() {
+    this.pop()
     this.shake.start();
     window.addEventListener('shake', this.onShake, false);
     window.addEventListener('keyup', this.onShake, false);
@@ -79,7 +80,6 @@ export default class Game extends Component {
       gameIsOn: true,
       rank: [],
     })
-
 
     this.timeout = setTimeout(() => {
       this.stop()
@@ -119,6 +119,10 @@ export default class Game extends Component {
   ajaxThis(complete) {
     const $ = window.$;
 
+    if (this.state.score > 0 && this.state.player.length > 0) {
+      complete = true;
+    }
+
     const request1 = $.ajax({
       type: "POST",
       url: 'https://get-letter-api.herokuapp.com/authenticate',
@@ -127,6 +131,9 @@ export default class Game extends Component {
         "password": "heticp2019",
       },
       success: (auth) => {
+        if (this.state.score > 500) {
+          return alert("trouve toi une copine")
+        }
         complete ? request2(auth.auth_token) : request3(auth.auth_token)
       },
     });
@@ -159,6 +166,7 @@ export default class Game extends Component {
       },
       success: results => {
         const rank = results
+          .filter(t => t.score < 500)
           .sort((a, b) => a.score - b.score)
           .reverse()
           .slice(1, 11)
