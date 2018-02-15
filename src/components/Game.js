@@ -61,9 +61,9 @@ export default class Game extends Component {
     }, timerInterval)
 
     this.resistance = setInterval(() => {
-      // this.setState({
-      //   score: Math.round(this.state.score - (this.state.resistance / 2))
-      // }, setBubbles(-this.state.resistance / 2))
+      this.setState({
+        score: Math.max(0, Math.round(this.state.score - (this.state.resistance / 8)))
+      }, setBubbles(-this.state.resistance / 4))
     }, 1000)
 
 
@@ -89,7 +89,7 @@ export default class Game extends Component {
   stop() {
     this.shake.stop()
     window.removeEventListener('shake', this.onShake, false);
-    window.removeEventListener('keydown', this.onShake, false);
+    window.removeEventListener('keyup', this.onShake, false);
 
     clearInterval(this.timer)
     clearInterval(this.resistance)
@@ -105,6 +105,7 @@ export default class Game extends Component {
 
   shakeEvent(e) {
     e && e.preventDefault();
+    if (e.keyCode && e.keyCode !== 32) return false
 
     this.setState({
       shakeCount: this.state.shakeCount + 1,
@@ -133,7 +134,6 @@ export default class Game extends Component {
   }
 
   render() {
-    console.log('kijij')
     return (
     <div className="text-center">
       { (this.state.gameIsOver && !this.state.gameIsOn) &&
@@ -142,7 +142,7 @@ export default class Game extends Component {
           score={this.state.score}
           player={this.state.player}
           />}
-        <pre>{true && JSON.stringify(this.state, null, 2)}</pre>
+        <pre>{false && JSON.stringify(this.state, null, 2)}</pre>
 
       {this.state.gameIsOn ?
         <div>

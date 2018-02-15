@@ -2,6 +2,8 @@
 import Bubble from './Bubble'
 
 let bubObjs = [];
+let timeOfLastUpdate;
+const timeIntervalBetweenUpdates = 400;
 window.bubbles = {
   count: 4,
 }
@@ -16,24 +18,29 @@ export const setup = (force) => {
   container.appendChild(canvas)
 
   setBubbles()
+  timeOfLastUpdate = millis();
 }
 
 export const setBubbles = (value = 4) => {
-  if (value > 0) {
-    for (let i = 0; i < value; i++) {
-      bubObjs.push(new Bubble());
+  let currentTime = millis();
+  if (currentTime - timeOfLastUpdate > timeIntervalBetweenUpdates) {
+    timeOfLastUpdate = currentTime;
+    if (value > 0) {
+      for (let i = 0; i < value; i++) {
+        bubObjs.push(new Bubble());
+      }
+    } else {
+      bubObjs.splice(-value)
     }
-  } else {
-    // bubObjs.splice(-value)
   }
 }
 
 export const draw = () => {
-  background(255);
-  for (let i = 0; i < bubObjs.length; i++) {
-    bubObjs[i].display();
-    bubObjs[i].move();
-  }
+    background(255);
+    for (let i = 0; i < bubObjs.length; i++) {
+      bubObjs[i].display();
+      bubObjs[i].move();
+    }
 }
 
 export const windowResized = () => {

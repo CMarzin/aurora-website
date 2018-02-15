@@ -31,7 +31,7 @@ export default class App extends Component {
             <Route exact path='/making-of' component={MakingOf}/>
             <Route exact path='/gallery' component={Gallery}/>
             <Route exact path='/jeux' render={ props => (
-              <Game {...props} timeout={10000} />
+              <Game {...props} timeout={20000} />
               )} />
             <Route render={function () {
               return <p>Not Found</p>

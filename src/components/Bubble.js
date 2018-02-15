@@ -15,12 +15,12 @@ export default class Bubble {
 
   display() {
     stroke(135, 222, 250);
-    strokeWeight(4);
+    strokeWeight(8);
     ellipse(this.x, this.y, this.size);
   }
 
   move() {
-    if (this.y <= -350) {
+    if (this.y <= -500) {
       this.init()
     }
 
