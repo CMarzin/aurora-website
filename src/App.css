@@ -83,6 +83,10 @@ p {
 * Synopsis
 ********************************/
 
+.synopsis_container {
+  width: 100%;
+  height: 100%;
+}
 .synopsis_container h2 {
   margin-bottom: 3rem;
   margin-top: 3rem;
@@ -110,11 +114,11 @@ p {
   list-style: none;
 }
 
-.Synopsis_image {
+.synopsis_image {
   position: relative;
-  width: 100%;
-  height: 25%;
-  background: blue;
+  max-width: 100%;
+  height: 40vh;
+  background: url('syno.jpg');
 }
 
 .trolo {

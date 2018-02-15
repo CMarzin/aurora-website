@@ -23,22 +23,20 @@ export default class App extends Component {
       <Router>
         <div className='h-100'>
           <Nav />
-          <div className='h-100 container app__container'>
-            <Switch>
-              <Route exact path='/' component={Movie}/>
-              <Route exact path='/film' component={Movie}/>
-              <Route exact path='/trailer' component={Trailer} />
-              <Route exact path='/synopsis' component={Synopsis} />
-              <Route exact path='/making-of' component={MakingOf}/>
-              <Route exact path='/gallery' component={Gallery}/>
-              <Route exact path='/jeux' render={ props => (
-                <Game {...props} timeout={10000} />
-                )} />
-              <Route render={function () {
-                return <p>Not Found</p>
-              }} />
-            </Switch>
-          </div>
+          <Switch>
+            <Route exact path='/' component={Movie}/>
+            <Route exact path='/film' component={Movie}/>
+            <Route exact path='/trailer' component={Trailer} />
+            <Route exact path='/synopsis' component={Synopsis} />
+            <Route exact path='/making-of' component={MakingOf}/>
+            <Route exact path='/gallery' component={Gallery}/>
+            <Route exact path='/jeux' render={ props => (
+              <Game {...props} timeout={10000} />
+              )} />
+            <Route render={function () {
+              return <p>Not Found</p>
+            }} />
+          </Switch>
         </div>
       </Router>
     )
