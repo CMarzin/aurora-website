@@ -11,6 +11,13 @@ const routes = [
   'gallerie'
 ]
 
+const toogle = (e) => {
+  const $ = window.$;
+  const menu = document.querySelector('.navbar-toggler')
+  if ($(window).width() < 992)
+    menu && menu.click()
+}
+
 export default () =>
     <nav className="nav navbar navbar-expand-lg navbar-light text-center">
       <NavLink className="navbar-brand" to="/"><img src={logo} height="48"/></NavLink>
@@ -22,7 +29,7 @@ export default () =>
       <ul className="navbar-nav ml-auto">
           {routes.map((r, i) =>
             <li className="nav-item" key={`nav-child-${i}`}>
-              <NavLink exact className="nav-link" activeClassName='active-nav' to={`/${r}`}>{r.toUpperCase()}</NavLink>
+              <NavLink exact className="nav-link" activeClassName='active-nav' onClick={toogle} to={`/${r}`}>{r.toUpperCase()}</NavLink>
             </li>
           )}
         </ul>

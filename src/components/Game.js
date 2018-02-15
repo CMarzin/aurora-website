@@ -96,6 +96,7 @@ export default class Game extends Component {
     visual.noLoop();
     document.querySelector('canvas') && visual.noCanvas()
     clearBubbles()
+    try { navigator.vibrate(0) } catch (e) { }
 
     this.setState({
       gameIsOn: false,
