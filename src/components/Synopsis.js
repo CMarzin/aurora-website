@@ -7,7 +7,7 @@ const Synopsis = () => {
 
       <div className="synopsis_image"></div>
 
-      <div className="container app_container">
+      <div className="container">
         <div className="synopsis_story">
           <h2>{ SynopsisData.story.title }</h2>
           <p>{ SynopsisData.story.description }</p>
@@ -33,13 +33,13 @@ const Synopsis = () => {
 
         <div className="synopsis_squad">
           <ul className="synopsis_people">
-            {SynopsisData.squad.map((item, index) => (              
+            {SynopsisData.squad.map((item, index) => (
               <li key={ index }>
                 <h3 >{ item.name }</h3>
                 <p>{ item.role }</p>
               </li>
             ))}
-          </ul>          
+          </ul>
         </div>
       </div>
 

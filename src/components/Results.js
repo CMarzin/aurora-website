@@ -14,8 +14,19 @@ const fake = [{
 
 export default (props) =>
   <div className="results text-center">
-    <p>Your score is {props.score}</p>
+    <p>Your score is {props.score} {props.player && `(${props.player})`}</p>
     <p>Fin du jeu le 15/02/2018 à 18h</p>
+
+    {props.player.length === 0 && <form onSubmit={ e => {e.preventDefault();props.onSubmit(e)} }>
+      <fieldset>
+        <legend>Quel est votre nom jeune pèlerin?</legend>
+        <div className="form-group col-md-6 offset-md-3 text-left">
+          <input required type="text" className="form-control" placeholder="Frère Louis, Paul, Jeanne..." id="playerName" name="playerName" />
+        </div>
+        <button type="submit" className="btn btn-primary">Valider</button>
+
+      </fieldset>
+    </form>}
 
     <table className="table text-left">
       <thead>
