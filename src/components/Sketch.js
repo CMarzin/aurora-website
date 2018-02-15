@@ -9,7 +9,7 @@ window.bubbles = {
 }
 
 export const setup = (force) => {
-  if (!force) return document.querySelector('#defaultCanvas0').remove()
+  if (!force) return document.querySelector('canvas').remove()
 
   const size = getContainerSize();
   const container = document.querySelector('#app__container');

@@ -5,6 +5,10 @@
   transition: 0.5s ease;
 }
 
+body {
+  font-family: 'Montserrat', sans-serif !important;
+}
+
 .active-nav:before {
   content: '';
   transition: 0.5s ease;
@@ -160,6 +164,14 @@ p {
   color: #4AC7E2;
 }
 
+.gameOn {
+  background: #4AC7E2;
+  color: white;
+  padding: .5rem 2rem !important;
+  text-transform: uppercase;
+  border-radius: 999rem !important;
+}
+
 .movie_text {
   margin-top: 3rem;
   text-align: center;
@@ -188,5 +200,5 @@ p {
 }
 
 canvas {
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid rgb(135, 222, 250);
 }

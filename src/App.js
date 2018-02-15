@@ -21,17 +21,17 @@ export default class App extends Component {
   render() {
     return (
       <Router>
-        <div className='h-100' id="app__container">
+        <div className='h-100 d-flex flex-column' id="app__container">
           <Nav />
           <Switch>
             <Route exact path='/' component={Movie}/>
             <Route exact path='/film' component={Movie}/>
-            <Route exact path='/trailer' component={Trailer} />
+            <Route exact path='/teaser' component={Trailer} />
             <Route exact path='/synopsis' component={Synopsis} />
             <Route exact path='/making-of' component={MakingOf}/>
-            <Route exact path='/gallery' component={Gallery}/>
-            <Route exact path='/jeux' render={ props => (
-              <Game {...props} timeout={20000} />
+            <Route exact path='/gallerie' component={Gallery}/>
+            <Route exact path='/jeu' render={ props => (
+              <Game {...props} timeout={10000} />
               )} />
             <Route render={function () {
               return <p>Not Found</p>

@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default (props) =>
-  <div className="video__container d-flex h-100 justify-content-center align-items-center">
+  <div className="video__container d-flex h-100 justify-content-center aligzn-items-center mt-5">
     <div style={{ width: '100%'}}>
       {!props.id && <p className="lead text-center mb-5"><strong>{props.text}</strong></p>}
       <div className="video__wrapper">

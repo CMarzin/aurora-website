@@ -135,8 +135,8 @@ export default class Game extends Component {
 
   render() {
     return (
-    <div className="text-center">
-      { (this.state.gameIsOver && !this.state.gameIsOn) &&
+    <div className={`text-center mb-5 ${(!this.state.gameIsOn && !this.state.gameIsOver) && 'h-75 d-flex justify-content-center align-items-center'}`}>
+      {(this.state.gameIsOver && !this.state.gameIsOn) &&
         <Results
           onSubmit={this.setPlayer.bind(this)}
           score={this.state.score}
@@ -145,11 +145,15 @@ export default class Game extends Component {
         <pre>{false && JSON.stringify(this.state, null, 2)}</pre>
 
       {this.state.gameIsOn ?
-        <div>
-            <p className="time">{(this.state.timeLeft / 1000).toFixed(2)}</p>
+        <div className="gameIsOn">
+            <h2 className="time"><strong>{(this.state.timeLeft / 1000).toFixed(2)} secondes</strong></h2>
+            <p>Bulles libérées: {this.state.score}</p>
+            {this.state.player.length > 0 && <p>Joueur: <strong>{this.state.player}</strong></p>}
         </div>
-      : <div className="text-center">
-          <button className="btn btn-success" onClick={this.play.bind(this)}>Jouer</button>
+      : <div className="text-center mt-10">
+          <h2><strong>Prêt à libérer un maximum de bulles ?</strong></h2>
+          <p>Remuer votre téléphone ou appuyez sur espace</p>
+          <button className="btn gameOn" onClick={this.play.bind(this)}>Jouer</button>
         </div>
       }
     </div>)

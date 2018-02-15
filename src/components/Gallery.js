@@ -4,7 +4,7 @@ import Instafeed from 'react-instafeed';
 export default class Gallery extends Component {
   render() {
     return(
-    <div id="instafeed" className="row">
+    <div id="instafeed" className="row container m-auto">
       <Instafeed
         limit='50'
         get='user'
