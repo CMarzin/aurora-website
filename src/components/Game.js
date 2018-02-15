@@ -123,22 +123,42 @@ export default class Game extends Component {
       url: 'https://get-letter-api.herokuapp.com/authenticate',
       data: {
         "email": "example@gmail.com",
-        "password": "heticp2019"
+        "password": "heticp2019",
       },
-      success: (res) => {
-        request2(res.auth_token)
+      success: (auth) => {
+        request2(auth.auth_token)
       },
-      // dataType: dataType
     });
 
-
     const request2 = token => $.ajax({
+      type: "POST",
+      url: "https://get-letter-api.herokuapp.com/bubble_games",
+      headers: {
+        "Authorization": token,
+      },
+      contentType: "application/json",
+      dataType: "json",
+      data: JSON.stringify({
+        "bubble_game": {
+          "pseudo": this.state.player,
+          "score": parseInt(this.state.score)
+        }
+      }),
+      complete: post => {
+        request3(token)
+      }
+    })
+
+    const request3 = token => $.ajax({
       type: "GET",
+      contentType: "application/json",
       url: "https://get-letter-api.herokuapp.com/bubble_games",
       headers: {
         "Authorization": token
       },
-      success: youpi => console.log(youpi)
+      success: results => {
+        console.log(results)
+      }
     })
   }
 
