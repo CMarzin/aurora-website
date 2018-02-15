@@ -48,13 +48,9 @@ export default class Game extends Component {
   }
 
   play() {
-    this.setState({
-      gameIsOn: true
-    })
-
     this.shake.start();
     window.addEventListener('shake', this.onShake, false);
-    window.addEventListener('keydown', this.onShake, false);
+    window.addEventListener('keyup', this.onShake, false);
 
     const timerInterval = 10
     this.timer = setInterval(() => {
@@ -63,6 +59,12 @@ export default class Game extends Component {
         timePassed: this.state.timePassed + timerInterval,
       })
     }, timerInterval)
+
+    this.resistance = setInterval(() => {
+      // this.setState({
+      //   score: Math.round(this.state.score - (this.state.resistance / 2))
+      // }, setBubbles(-this.state.resistance / 2))
+    }, 1000)
 
 
     window.setup(true)
@@ -75,6 +77,7 @@ export default class Game extends Component {
       shakeCount: 0,
       timeLeft: this.props.timeout,
       timePassed: 0,
+      gameIsOn: true,
     })
 
 
@@ -89,6 +92,7 @@ export default class Game extends Component {
     window.removeEventListener('keydown', this.onShake, false);
 
     clearInterval(this.timer)
+    clearInterval(this.resistance)
     visual.noLoop();
     visual.noCanvas()
     setBubbles()
@@ -113,10 +117,23 @@ export default class Game extends Component {
 
   setPlayer(event) {
     const data = window.$(event.target).serializeArray()[0]
-    this.setState({ player: data.value })    
+    this.setState({ player: data.value })
+  }
+
+  componentWillUnmount() {
+    this.setState({
+      resistance: 0,
+      score: 0,
+      shakeCount: 0,
+      gameIsOn: false,
+      timeLeft: this.props.timeout,
+      timePassed: 0,
+      gameIsOver: false,
+    })
   }
 
   render() {
+    console.log('kijij')
     return (
     <div className="text-center">
       { (this.state.gameIsOver && !this.state.gameIsOn) &&
@@ -125,7 +142,7 @@ export default class Game extends Component {
           score={this.state.score}
           player={this.state.player}
           />}
-        <pre>{false && JSON.stringify(this.state, null, 2)}</pre>
+        <pre>{true && JSON.stringify(this.state, null, 2)}</pre>
 
       {this.state.gameIsOn ?
         <div>

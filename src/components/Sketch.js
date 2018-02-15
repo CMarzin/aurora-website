@@ -3,7 +3,7 @@ import Bubble from './Bubble'
 
 let bubObjs = [];
 window.bubbles = {
-  count: 4
+  count: 4,
 }
 
 export const setup = (force) => {
@@ -19,9 +19,12 @@ export const setup = (force) => {
 }
 
 export const setBubbles = (value = 4) => {
-  bubObjs = []
-  for (let i = 0; i < value; i++) {
-    bubObjs[i] = new Bubble();
+  if (value > 0) {
+    for (let i = 0; i < value; i++) {
+      bubObjs.push(new Bubble());
+    }
+  } else {
+    // bubObjs.splice(-value)
   }
 }
 

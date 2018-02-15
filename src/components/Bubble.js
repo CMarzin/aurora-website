@@ -14,7 +14,8 @@ export default class Bubble {
   }
 
   display() {
-    stroke(0);
+    stroke(135, 222, 250);
+    strokeWeight(4);
     ellipse(this.x, this.y, this.size);
   }
 
