@@ -118,7 +118,7 @@ p {
   position: relative;
   max-width: 100%;
   height: 40vh;
-  background: url('syno.jpg');
+  background: url('img/syno.jpg');
 }
 
 .trolo {
@@ -130,9 +130,9 @@ p {
 
   display: flex;
   justify-content: space-around;
-  
+
   list-style: none;
-  padding: 0;  
+  padding: 0;
 }
 
 .synopsis_squad {
@@ -148,7 +148,7 @@ p {
   flex-wrap: wrap;
 
   text-align: center;
-  padding: 0;  
+  padding: 0;
   list-style: none;
 }
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import logo from '../img/logo.svg';
 
 var NavLink = require('react-router-dom').NavLink;
 const routes = [
@@ -12,7 +13,7 @@ const routes = [
 
 export default () =>
     <nav className="nav navbar navbar-expand-lg navbar-light bg-light">
-      <NavLink className="navbar-brand" to="/">LOGO</NavLink>
+      <NavLink className="navbar-brand" to="/"><img src={logo} height="48"/></NavLink>
       <button className="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style={{}}>
         <span className="navbar-toggler-icon"></span>
       </button>
