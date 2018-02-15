@@ -116,9 +116,37 @@ export default class Game extends Component {
     this.pop()
   }
 
+  ajaxThis() {
+    const $ = window.$;
+    $.ajax({
+      type: "POST",
+      url: 'https://get-letter-api.herokuapp.com/authenticate',
+      data: {
+        "email": "example@gmail.com",
+        "password": "heticp2019"
+      },
+      success: (res) => {
+        request2(res.auth_token)
+      },
+      // dataType: dataType
+    });
+
+
+    const request2 = token => $.ajax({
+      type: "GET",
+      url: "https://get-letter-api.herokuapp.com/bubble_games",
+      headers: {
+        "Authorization": token
+      },
+      success: youpi => console.log(youpi)
+    })
+  }
+
   setPlayer(event) {
     const data = window.$(event.target).serializeArray()[0]
     this.setState({ player: data.value })
+
+    this.ajaxThis()
   }
 
   componentWillUnmount() {
