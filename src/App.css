@@ -167,11 +167,18 @@ p {
   flex-flow: column;
 }
 
+.text {
+  margin-top: 3rem;
+  text-align: center;
+  display: flex;
+  flex-flow: column;
+}
+
 .movie_description {
   display: flex;
   justify-content: center;
 }
-.movie_description p {
+.movie_description p {
   max-width: 60%;
 }
 
