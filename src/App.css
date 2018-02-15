@@ -182,6 +182,11 @@ p {
   max-width: 60%;
 }
 
+
+.navbar {
+  box-shadow: 0 2px 4px #F2F2F2;
+}
+
 canvas {
   border-bottom: 1px solid grey;
 }

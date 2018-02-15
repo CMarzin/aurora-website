@@ -12,7 +12,7 @@ const routes = [
 ]
 
 export default () =>
-    <nav className="nav navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="nav navbar navbar-expand-lg navbar-light">
       <NavLink className="navbar-brand" to="/"><img src={logo} height="48"/></NavLink>
       <button className="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style={{}}>
         <span className="navbar-toggler-icon"></span>
