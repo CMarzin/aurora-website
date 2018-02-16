@@ -7,7 +7,7 @@ import Results from './Results'
 import bubbleSound from '../sounds/bulles.mp3'
 
 let visual = new p5()
-
+const countdownLimit = 3;
 // P5
 window.setup = setup
 window.draw = draw
@@ -28,6 +28,7 @@ export default class Game extends Component {
       timeLeft: props.timeout,
       timePassed: 0,
       gameIsOver: false,
+      countdown: 0,
     }
     this.props = props
 
@@ -50,40 +51,57 @@ export default class Game extends Component {
 
   play() {
     this.pop()
-    this.shake.start();
-    window.addEventListener('shake', this.onShake, false);
-    window.addEventListener('keyup', this.onShake, false);
-
-    const timerInterval = 25
-    this.timer = setInterval(() => {
-      this.setState({
-        timeLeft: this.props.timeout - this.state.timePassed,
-        timePassed: this.state.timePassed + timerInterval,
-      })
-    }, timerInterval)
-
-    this.resistance = setInterval(() => {
-      this.setState({
-        score: Math.max(0, Math.round(this.state.score - (this.state.resistance / 8)))
-      }, setBubbles(-this.state.resistance / 4))
-    }, 1000)
-
-    window.setup(true)
-    visual.loop()
 
     this.setState({
-      score: 0,
-      resistance: 0,
-      shakeCount: 0,
-      timeLeft: this.props.timeout,
-      timePassed: 0,
+      countdown: countdownLimit,
       gameIsOn: true,
-      rank: [],
+      score: 0,
+      timeLeft: this.props.timeout,
     })
 
-    this.timeout = setTimeout(() => {
-      this.stop()
-    }, this.props.timeout);
+    const countdown = setInterval(() => {
+      if (this.state.countdown > 1)
+        this.setState({
+          countdown: this.state.countdown - 1
+        })
+      else {
+        clearInterval(countdown)
+
+        this.shake.start();
+        window.addEventListener('shake', this.onShake, false);
+        window.addEventListener('keyup', this.onShake, false);
+
+        const timerInterval = 25
+        this.timer = setInterval(() => {
+          this.setState({
+            timeLeft: this.props.timeout - this.state.timePassed,
+            timePassed: this.state.timePassed + timerInterval,
+          })
+        }, timerInterval)
+
+        this.resistance = setInterval(() => {
+          this.setState({
+            score: Math.max(0, Math.round(this.state.score - (this.state.resistance / 8)))
+          }, setBubbles(-this.state.resistance / 4))
+        }, 1000)
+
+        window.setup(true)
+        visual.loop()
+
+        this.setState({
+          resistance: 0,
+          shakeCount: 0,
+          timePassed: 0,
+          gameIsOn: true,
+          rank: [],
+          countdown: 0,
+        })
+
+        this.timeout = setTimeout(() => {
+          this.stop()
+        }, this.props.timeout);
+      }
+    }, 1000)
   }
 
   stop() {
@@ -211,7 +229,7 @@ export default class Game extends Component {
           ajax={this.ajaxThis.bind(this)}
           />}
         <pre>{false && JSON.stringify(this.state, null, 2)}</pre>
-
+        {(this.state.countdown <= countdownLimit && this.state.countdown > 0) && <p className="display-4">{this.state.countdown}</p>}
       {this.state.gameIsOn ?
         <div className="gameIsOn">
             <h2 className="time"><strong>{(this.state.timeLeft / 1000).toFixed(2)} secondes</strong></h2>
