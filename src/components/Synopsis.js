@@ -9,17 +9,17 @@ const Synopsis = () => {
 
       <div className="container">
         <div className="synopsis_story">
-          <h2>{ SynopsisData.story.title }</h2>
+          <h3>{ SynopsisData.story.title }</h3>
           <p>{ SynopsisData.story.description }</p>
         </div>
 
         <div className="synopsis_character">
-          <h2>{ SynopsisData.character.title }</h2>
-          <ul className="trolo synopsis_characters">
+          <h3>{ SynopsisData.character.title }</h3>
+          <ul className="row synopsis_characters m-0">
             {SynopsisData.character.characters.map((item, index) => (
-              <li key={ index }>
+              <li key={ index } className="col-md-4 text-center">
                 <span></span>
-                <h3>{ item.name }</h3>
+                <h4>{ item.name }</h4>
                 <p>{ item.description }</p>
               </li>
             ))}
@@ -27,15 +27,15 @@ const Synopsis = () => {
         </div>
 
         <div className="Synopsis_explanation">
-          <h2>{ SynopsisData.explanation.title }</h2>
+          <h3>{ SynopsisData.explanation.title }</h3>
           <p>{ SynopsisData.explanation.description }</p>
         </div>
 
         <div className="synopsis_squad">
           <ul className="synopsis_people">
             {SynopsisData.squad.map((item, index) => (
-              <li key={ index }>
-                <h3 >{ item.name }</h3>
+              <li key={ index } className="col-md-6">
+                <h4>{ item.name }</h4>
                 <p>{ item.role }</p>
               </li>
             ))}

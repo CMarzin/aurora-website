@@ -33,12 +33,18 @@ export default class Results extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.props.rank.map((res, rank) => (
-              <tr key={`winner-${rank}`} className={rank === 0 ? "table-primary font-weight-bold" : ""}>
+            {this.props.rank.map((res, rank) => {
+              let isMe = false
+              if (this.props.score > 0 && this.props.player.length > 0) {
+                isMe = this.props.score === res.score && this.props.player === res.pseudo
+              }
+
+              return (
+              <tr key={`winner-${rank}`} className={rank === 0 ? "table-primary font-weight-bold" : isMe ? "table-active" : ""}>
                 <th scope="row">{rank + 1}</th>
                 <td>{res.pseudo}</td>
                 <td>{res.score}</td>
-            </tr>))}
+            </tr>)})}
           </tbody>
         </table>
       </div>

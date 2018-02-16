@@ -31,7 +31,7 @@ export default {
     },
     {
       name: 'Alex BERNEAU',
-      role: 'Acteur (Maître Grand Bullier)'
+      role: 'Acteur (Grand Bullier)'
     },
     {
       name: 'Corentin MARZIN',

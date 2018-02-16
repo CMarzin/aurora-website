@@ -119,7 +119,6 @@ export default class Game extends Component {
 
   ajaxThis(complete) {
     const $ = window.$;
-
     if (this.state.score > 0 && this.state.player.length > 0) {
       complete = true;
     }
@@ -196,6 +195,8 @@ export default class Game extends Component {
           <h2 className="text-center mb-3 mt-3">Le jeu est maintenant terminé !</h2>
           <Results
             player={" "}
+            rank={this.state.rank || []}
+            ajax={this.ajaxThis.bind(this)}
           />
         </div>
       )
