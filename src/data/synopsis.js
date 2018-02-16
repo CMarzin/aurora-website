@@ -22,7 +22,7 @@ export default {
   },
   explanation: {
     title: 'QUI SOMMES NOUS ?',
-    description: 'Nous sommes de toutes nationalités et cultures, nous parlons des langues différentes, mais nous avons des buts communs, le projet court-métrage. Nous voulons avant tout rendre honneur à la Sainte Bulle et à son eau Fabuleuse. Pendant 10 jours, notre équipe c’est occupé du scénario au montage en passant par l\'organisation du tournage ainsi que de la communication ! '
+    description: 'Nous sommes de toutes nationalités et cultures, nous parlons des langues différentes, mais nous avons des buts communs, le projet court-métrage. Nous voulons avant tout rendre honneur à la Sainte Bulle et à son eau Fabuleuse. Pendant 10 jours, notre équipe s’est occupée du scénario au montage en passant par l\'organisation du tournage ainsi que de la communication ! '
   },
   squad: [
     {
