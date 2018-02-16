@@ -9,7 +9,7 @@ export default class Results extends Component {
     return (
       <div className="results text-center mt-4">
       { this.props.score && <h2><strong>Vous avez libérés {this.props.score} bulles sacrées {this.props.player && `(${this.props.player})`}</strong></h2>}
-      <p>Fin du jeu le 16/02/2018 à 12h</p>
+      <p>Fin du jeu le 16/02/2018 à 22h</p>
 
       {this.props.player.length === 0 &&
       <form onSubmit={ e => {e.preventDefault();this.props.onSubmit(e)} } className="mb-5 mt-5">

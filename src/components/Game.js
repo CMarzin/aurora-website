@@ -13,7 +13,7 @@ window.setup = setup
 window.draw = draw
 window.windowResized = windowResized
 
-const endDate = new Date("February 16, 2018 12:00:00");
+const endDate = new Date("February 16, 2018 22:00:00");
 
 export default class Game extends Component {
   constructor(props) {
