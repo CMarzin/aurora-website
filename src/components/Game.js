@@ -219,7 +219,7 @@ export default class Game extends Component {
         </div>
       : <div className="text-center mt-10">
           <h2><strong>Prêt à libérer un maximum de bulles ?</strong></h2>
-          <p>Remuer votre téléphone ou appuyez sur espace</p>
+          <p>Secouez votre téléphone ou appuyez sur espace</p>
           <button className="btn gameOn" onClick={this.play.bind(this)}>Jouer</button>
         </div>
       }
