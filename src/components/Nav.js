@@ -6,6 +6,7 @@ const routes = [
   'teaser',
   'film',
   'jeu',
+  'classement',
   'synopsis',
   'making-of',
   'gallerie'

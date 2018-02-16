@@ -10,6 +10,8 @@ import Trailer from './components/Trailer';
 import Synopsis from './components/Synopsis';
 import MakingOf from './components/MakingOf';
 import Gallery from './components/Gallery';
+import Results from './components/Results';
+import Rankings from './components/Rankings';
 
 var ReactRouter = require('react-router-dom');
 var Router = ReactRouter.BrowserRouter;
@@ -30,6 +32,7 @@ export default class App extends Component {
             <Route exact path='/synopsis' component={Synopsis} />
             <Route exact path='/making-of' component={MakingOf}/>
             <Route exact path='/gallerie' component={Gallery}/>
+            <Route exact path='/classement' component={Rankings}/>
             <Route exact path='/jeu' render={ props => (
               <Game {...props} timeout={10000} />
               )} />
