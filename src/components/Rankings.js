@@ -46,7 +46,6 @@ export default class Results extends Component {
   render() {
     return (
       <div className="results text-center mt-4">
-      <p>Fin du jeu le 16/02/2018 à 22h</p>
 
       <div className="col-md-8 offset-md-2 p-0">
         <table className="table text-left">
@@ -58,7 +57,8 @@ export default class Results extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.rank.map((res, rank) => {
+            {this.state.rank.length === 0 ? <tr><td>Chargement des résultats...</td></tr> :
+            this.state.rank.map((res, rank) => {
               return (
               <tr key={`winner-${rank}`} className={rank === 0 ? "table-primary font-weight-bold" : ""}>
                 <th scope="row">{rank + 1}</th>

@@ -9,7 +9,6 @@ export default class Results extends Component {
     return (
       <div className="results text-center mt-4">
       { this.props.score && <h2><strong>Vous avez libérés {this.props.score} bulles sacrées {this.props.player && `(${this.props.player})`}</strong></h2>}
-      <p>Fin du jeu le 16/02/2018 à 22h</p>
 
       {this.props.player.length === 0 &&
       <form onSubmit={ e => {e.preventDefault();this.props.onSubmit(e)} } className="mb-5 mt-5">
@@ -22,6 +21,7 @@ export default class Results extends Component {
 
         </fieldset>
       </form>}
+      {this.props.rank.length === 0 && <h2>Chargement des résultats...</h2>}
 
       <div className="col-md-8 offset-md-2 p-0">
         <table className="table text-left">
@@ -33,7 +33,8 @@ export default class Results extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.props.rank.map((res, rank) => {
+              {this.props.rank.length === 0 ? <tr><td>Chargement des résultats...</td></tr> :
+              this.props.rank.length && this.props.rank.map((res, rank) => {
               let isMe = false
               if (this.props.score > 0 && this.props.player.length > 0) {
                 isMe = this.props.score === res.score && this.props.player === res.pseudo

@@ -13,8 +13,6 @@ window.setup = setup
 window.draw = draw
 window.windowResized = windowResized
 
-const endDate = new Date("February 16, 2018 22:00:00");
-
 export default class Game extends Component {
   constructor(props) {
     super()
@@ -207,17 +205,6 @@ export default class Game extends Component {
   }
 
   render() {
-    if(Date.now() > endDate.getTime())
-      return (
-        <div>
-          <h2 className="text-center mb-3 mt-3">Le jeu est maintenant terminé !</h2>
-          <Results
-            player={" "}
-            rank={this.state.rank || []}
-            ajax={this.ajaxThis.bind(this)}
-          />
-        </div>
-      )
     return (
     <div className={`text-center mb-5 ${(!this.state.gameIsOn && !this.state.gameIsOver) && 'h-75 d-flex justify-content-center align-items-center'}`}>
       {(this.state.gameIsOver && !this.state.gameIsOn) &&
